@@ -1,0 +1,44 @@
+<div class="scrum-board" dragula="COLUMNS" [(dragulaModel)]="board.list">
+  <mat-card class="task-list-container" *ngFor="let list of board.list">
+    <div class="task-list-title">
+      <span (click)="editListTitle(list)" *ngIf="!list.editMode"
+        >{{ list.title }}
+      </span>
+      <div *ngIf="list.editMode">
+        <input
+          type="text"
+          [value]="list.title"
+          [(ngModel)]="list.title"
+          (keyup.enter)="editListTitle(list, false)"
+          (blur)="editListTitle(list, false)"
+        />
+      </div>
+    </div>
+    <mat-list class="task-list" dragula="ITEMS" [(dragulaModel)]="list.cards">
+      <mat-list-item class="task-card" *ngFor="let card of list.cards">
+        <h4 mat-line [innerHtml]="card.title"></h4>
+        <button mat-icon-button (click)="editCard(card)">
+          <mat-icon>create</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+    <div class="task-list-add-btn text-center">
+      <button *ngIf="!list.addMode" (click)="addCard(list)" mat-raised-button>
+        <mat-icon>add</mat-icon> Add another Card
+      </button>
+      <div *ngIf="list.addMode">
+        <input
+          type="text"
+          #cardTitleInput
+          (keyup.enter)="addCardAct(cardTitleInput.value, list)"
+        />
+        <button (click)="addCardAct(cardTitleInput.value, list)">Create</button>
+        <button (click)="list.addMode = false">X</button>
+      </div>
+    </div>
+  </mat-card>
+  <mat-card>
+    <button (click)="addList()">+ Add another List</button>
+  </mat-card>
+</div>
+

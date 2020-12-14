@@ -1,0 +1,50 @@
+.scrum-board {
+  max-width: 100%;
+  flex: 1;
+  height: 100%;
+  overflow-x: scroll;
+  display: flex;
+  align-items: flex-start;
+}
+.task-list-container {
+  display: flex;
+  max-width: 250px;
+  min-width: 250px;
+  max-height: 100%;
+  overflow-y: hidden;
+  width: 250px;
+  flex-direction: column;
+  padding: 0px;
+  margin: 4px;
+
+  .task-list {
+    flex: 1;
+    max-height: calc(100% - 130px);
+    min-height: 10px;
+    overflow-y: auto;
+    margin: 4px;
+    .task-card {
+      margin: 4px;
+      cursor: pointer;
+      border: 1px solid;
+    }
+  }
+  .task-list-title {
+    height: 65px;
+    min-height: 65px;
+    cursor: pointer;
+    background: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .task-list-add-btn {
+    height: 65px;
+    min-height: 65px;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
